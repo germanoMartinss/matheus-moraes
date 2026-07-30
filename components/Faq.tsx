@@ -41,10 +41,10 @@ export default function Faq() {
     <section id="faq" className="px-[6vw] py-[110px] bg-bg-secondary">
       <div className="max-w-[820px] mx-auto">
         <div className="text-center mb-14">
-          <div className="text-[13px] tracking-[3px] text-gold uppercase mb-4">
+          <div className="text-[14px] tracking-[3px] text-gold uppercase mb-4">
             Perguntas Frequentes
           </div>
-          <h2 className="font-heading text-[clamp(30px,3.5vw,42px)] text-text-heading">
+          <h2 className="font-heading text-[clamp(34px,4vw,46px)] text-text-heading">
             Dúvidas comuns
           </h2>
         </div>
@@ -57,15 +57,15 @@ export default function Faq() {
               onClick={() => toggleFaq(index)}
             >
               <div className="flex justify-between items-center gap-5">
-                <h4 className="text-[17px] text-[#f0ede5] font-medium m-0">
+                <h4 className="text-[18.5px] text-[#f0ede5] font-medium m-0">
                   {item.question}
                 </h4>
-                <span className="text-[22px] text-gold shrink-0">
+                <span className="text-[24px] text-gold shrink-0">
                   {isOpen ? "–" : "+"}
                 </span>
               </div>
               {isOpen && (
-                <p className="text-[15.5px] leading-[1.75] text-[#a8a49a] mt-4 max-w-[680px]">
+                <p className="text-[17px] leading-[1.75] text-[#a8a49a] mt-4 max-w-[680px]">
                   {item.answer}
                 </p>
               )}

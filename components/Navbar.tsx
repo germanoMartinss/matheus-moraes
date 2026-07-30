@@ -25,10 +25,10 @@ export default function Navbar() {
             className="object-contain"
           />
           <div className="leading-[1.1]">
-            <div className="font-heading text-[16px] font-bold tracking-[0.5px] text-text-heading">
+            <div className="font-heading text-[19px] font-bold tracking-[0.5px] text-text-heading">
               MATHEUS MORAES
             </div>
-            <div className="text-[9px] tracking-[2px] text-gold uppercase">
+            <div className="text-[11px] tracking-[2px] text-gold uppercase">
               Advocacia &amp; Assessoria Jurídica
             </div>
           </div>
@@ -39,14 +39,14 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-[#d8d4cb] hover:text-gold-light"
+              className="text-base text-[#d8d4cb] hover:text-gold-light"
             >
               {link.label}
             </a>
           ))}
           <a
             href="https://wa.me/5513996764688"
-            className="text-[13px] tracking-[0.5px] px-[22px] py-[11px] border border-gold text-gold rounded-[2px] whitespace-nowrap"
+            className="text-[15px] tracking-[0.5px] px-[22px] py-[11px] border border-gold text-gold rounded-[2px] whitespace-nowrap"
           >
             Fale Agora
           </a>
@@ -84,7 +84,7 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setIsMenuOpen(false)}
-              className="text-sm text-[#d8d4cb] hover:text-gold-light"
+              className="text-base text-[#d8d4cb] hover:text-gold-light"
             >
               {link.label}
             </a>
@@ -92,7 +92,7 @@ export default function Navbar() {
           <a
             href="https://wa.me/5513996764688"
             onClick={() => setIsMenuOpen(false)}
-            className="text-[13px] tracking-[0.5px] px-[22px] py-[11px] border border-gold text-gold rounded-[2px] whitespace-nowrap"
+            className="text-[15px] tracking-[0.5px] px-[22px] py-[11px] border border-gold text-gold rounded-[2px] whitespace-nowrap"
           >
             Fale Agora
           </a>

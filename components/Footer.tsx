@@ -11,11 +11,11 @@ export default function Footer() {
           height={31}
           className="object-contain"
         />
-        <span className="font-heading text-sm text-text-secondary-light">
+        <span className="font-heading text-base text-text-secondary-light">
           Matheus Moraes · Advocacia e Assessoria Jurídica
         </span>
       </div>
-      <span className="text-[13px] text-[#6b6860]">
+      <span className="text-sm text-[#6b6860]">
         © 2026 Todos os direitos reservados.
       </span>
     </footer>

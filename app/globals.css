@@ -30,35 +30,35 @@
   --color-text-secondary-light: var(--color-text-secondary-light);
   --font-heading: var(--font-heading);
   --font-body: var(--font-body);
-  --spacing-section-y: var(--section-padding-y);
-  --spacing-section-x: var(--section-padding-x);
 }
 
-* {
-  box-sizing: border-box;
-}
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
 
-html {
-  scroll-behavior: smooth;
-}
+  html {
+    scroll-behavior: smooth;
+  }
 
-body {
-  margin: 0;
-  background: var(--color-bg-primary);
-  color: var(--color-text-primary);
-  font-family: var(--font-body), sans-serif;
-}
+  body {
+    margin: 0;
+    background: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    font-family: var(--font-body), sans-serif;
+  }
 
-::selection {
-  background: var(--color-gold);
-  color: var(--color-bg-primary);
-}
+  ::selection {
+    background: var(--color-gold);
+    color: var(--color-bg-primary);
+  }
 
-a {
-  color: var(--color-gold);
-  text-decoration: none;
-}
+  a {
+    color: var(--color-gold);
+    text-decoration: none;
+  }
 
-a:hover {
-  color: var(--color-gold-light);
+  a:hover {
+    color: var(--color-gold-light);
+  }
 }
