@@ -1,3 +1,5 @@
+import Reveal from "./Reveal";
+
 const contactInfo = [
   {
     label: "Endereço",
@@ -43,7 +45,7 @@ export default function Contato() {
             "repeating-linear-gradient(45deg, transparent, transparent 38px, #c8a862 38px, #c8a862 39px)",
         }}
       />
-      <div className="relative z-10 max-w-[860px] mx-auto text-center">
+      <Reveal className="relative z-10 max-w-[860px] mx-auto text-center">
         <div className="text-[14px] tracking-[3px] text-gold uppercase mb-4">
           Contato
         </div>
@@ -56,7 +58,10 @@ export default function Contato() {
         </p>
         <div className="grid grid-cols-1 min-[861px]:grid-cols-[1fr_0.8fr_1.2fr] gap-px bg-gold/15 border border-gold/15 mb-12 text-left">
           {contactInfo.map((item) => (
-            <div key={item.label} className="bg-bg-secondary px-[26px] py-8">
+            <div
+              key={item.label}
+              className="bg-bg-secondary px-[26px] py-8 transition-all duration-300 hover:bg-bg-secondary/60 hover:shadow-[inset_0_0_0_1px_rgba(200,168,98,0.35)]"
+            >
               <div className="text-[13px] tracking-[1.5px] text-gold uppercase mb-2.5">
                 {item.label}
               </div>
@@ -66,11 +71,11 @@ export default function Contato() {
         </div>
         <a
           href="https://wa.me/5513996764688"
-          className="inline-block text-base tracking-[0.5px] px-11 py-[18px] bg-gold text-bg-secondary rounded-[2px] font-medium"
+          className="inline-block text-base tracking-[0.5px] px-11 py-[18px] bg-gold text-bg-secondary rounded-[2px] font-medium transition-all duration-300 hover:bg-gold-light hover:-translate-y-1 hover:shadow-[0_14px_30px_rgba(200,168,98,0.3)]"
         >
           Conversar no WhatsApp
         </a>
-      </div>
+      </Reveal>
     </section>
   );
 }

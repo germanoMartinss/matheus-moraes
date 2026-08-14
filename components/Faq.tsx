@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Reveal from "./Reveal";
 
 const faqItems = [
   {
@@ -40,36 +41,44 @@ export default function Faq() {
   return (
     <section id="faq" className="px-[6vw] py-[110px] bg-bg-secondary">
       <div className="max-w-[820px] mx-auto">
-        <div className="text-center mb-14">
+        <Reveal className="text-center mb-14">
           <div className="text-[14px] tracking-[3px] text-gold uppercase mb-4">
             Perguntas Frequentes
           </div>
           <h2 className="font-heading text-[clamp(34px,4vw,46px)] text-text-heading">
             Dúvidas comuns
           </h2>
-        </div>
+        </Reveal>
         {faqItems.map((item, index) => {
           const isOpen = openIndex === index;
           return (
-            <div
-              key={item.question}
-              className="border-b border-gold/[0.18] py-[26px] cursor-pointer"
-              onClick={() => toggleFaq(index)}
-            >
-              <div className="flex justify-between items-center gap-5">
-                <h4 className="text-[18.5px] text-[#f0ede5] font-medium m-0">
-                  {item.question}
-                </h4>
-                <span className="text-[24px] text-gold shrink-0">
-                  {isOpen ? "–" : "+"}
-                </span>
+            <Reveal key={item.question} delay={index * 60}>
+              <div
+                className="border-b border-gold/[0.18] py-[26px] cursor-pointer transition-colors duration-300 hover:border-gold/40"
+                onClick={() => toggleFaq(index)}
+              >
+                <div className="flex justify-between items-center gap-5">
+                  <h4 className="text-[18.5px] text-[#f0ede5] font-medium m-0">
+                    {item.question}
+                  </h4>
+                  <span
+                    className={`relative flex items-center justify-center text-gold shrink-0 w-6 h-6 transition-transform duration-300 ${
+                      isOpen ? "rotate-45" : "rotate-0"
+                    }`}
+                  >
+                    <span className="absolute w-3.5 h-[1.5px] bg-gold" />
+                    <span className="absolute h-3.5 w-[1.5px] bg-gold" />
+                  </span>
+                </div>
+                <div className={`accordion-content ${isOpen ? "is-open" : ""}`}>
+                  <div>
+                    <p className="text-[17px] leading-[1.75] text-[#a8a49a] mt-4 max-w-[680px]">
+                      {item.answer}
+                    </p>
+                  </div>
+                </div>
               </div>
-              {isOpen && (
-                <p className="text-[17px] leading-[1.75] text-[#a8a49a] mt-4 max-w-[680px]">
-                  {item.answer}
-                </p>
-              )}
-            </div>
+            </Reveal>
           );
         })}
       </div>

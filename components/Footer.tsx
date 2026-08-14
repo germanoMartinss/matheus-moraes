@@ -9,14 +9,14 @@ export default function Footer() {
           alt="MM"
           width={32}
           height={31}
-          className="object-contain"
+          className="object-contain transition-transform duration-500 hover:rotate-[8deg]"
         />
         <span className="font-heading text-base text-text-secondary-light">
           Matheus Moraes · Advocacia e Assessoria Jurídica
         </span>
       </div>
       <span className="text-sm text-[#6b6860]">
-        © 2026 Todos os direitos reservados.
+        © {new Date().getFullYear()} Todos os direitos reservados.
       </span>
     </footer>
   );
