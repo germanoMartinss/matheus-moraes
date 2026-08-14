@@ -23,11 +23,6 @@ export default function Hero() {
             "repeating-linear-gradient(45deg, transparent, transparent 38px, #c8a862 38px, #c8a862 39px)",
         }}
       />
-      <div
-        className="absolute top-1/3 right-[8%] w-[380px] h-[380px] rounded-full bg-gold/10 blur-[100px] pointer-events-none animate-float"
-        aria-hidden="true"
-      />
-
       <div className="relative z-10 max-w-[640px]">
         <div className="text-[15px] tracking-[3px] text-gold uppercase mb-[22px] animate-fade-in-up">
           Santos, SP · Atuação Nacional
@@ -90,10 +85,6 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 flex justify-center items-center h-full animate-fade-in">
-        <div
-          className="absolute w-[440px] h-[440px] rounded-full border border-gold/20 pointer-events-none"
-          aria-hidden="true"
-        />
         <Image
           src="/assets/matheus-oval.png"
           alt="Matheus Moraes"
