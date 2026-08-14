@@ -9,6 +9,7 @@ type RevealProps = {
   as?: "div" | "span";
 };
 
+
 export default function Reveal({
   children,
   delay = 0,

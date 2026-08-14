@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Sobre from "@/components/Sobre";
 import AreasAtuacao from "@/components/AreasAtuacao";
+import GoogleReviews from "@/components/GoogleReviews";
 import Faq from "@/components/Faq";
 import Contato from "@/components/Contato";
 import Footer from "@/components/Footer";
@@ -14,6 +15,7 @@ export default function Home() {
       <Hero />
       <Sobre />
       <AreasAtuacao />
+      <GoogleReviews />
       <Faq />
       <Contato />
       <Footer />
