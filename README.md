@@ -49,7 +49,9 @@ src/
                 google-places.ts, structured-data.ts, cn.ts
   types/        tipos compartilhados
 public/
-  assets/       logo (mm-logo-white.png) e foto (matheus-oval.png)
+  assets/       logo (mm-logo-white.png), foto original com máscara oval
+                (matheus-oval.png; usada no JSON-LD) e retrato do Hero
+                (matheus-retrato.jpg)
   og.jpg        imagem de compartilhamento 1200x630
 ```
 
@@ -140,6 +142,7 @@ Também `poweredByHeader: false`. A chamada à Places API sai do servidor, entã
 - **Tailwind v4 com tokens no `@theme`:** cores, sombras e animações são tokens; não há cor hardcoded nos componentes. Todo CSS próprio está em `@layer` (CSS fora de camada vence os utilitários no v4).
 - **Conteúdo nunca depende de JavaScript:** o HTML do servidor vem com tudo visível. O `Reveal` só esconde, depois da hidratação, o que ainda está abaixo da dobra. Sem JS, as respostas do FAQ ficam abertas (`@media (scripting: none)`).
 - **Foto do Hero sem `preload`:** medições do Lighthouse mostraram que o LCP é o nome no cabeçalho, não a foto (ela entra com fade e fica abaixo da dobra no celular). `priority` foi descontinuado no Next 16, e a doc recomenda `preload` só para o elemento LCP. Um teste com `loading="eager"` não trouxe ganho (LCP mobile de 2,7 s em 2 de 3 rodadas, contra 2,2 s com lazy), então a foto mantém o lazy loading padrão.
+- **Retrato do Hero em arco com moldura concêntrica:** `matheus-retrato.jpg` (272×476, proporção 4:7) é o maior arco que cabe na área opaca do oval de `matheus-oval.png`, recortado dos canais de cor originais, por isso preenche o arco sem borda esfumaçada. A moldura é o mesmo arco (`rounded-t-full`) ampliado 12/16 px para cada lado, então o espaçamento é igual em todo o perímetro e a linha fecha na base. Ao trocar a foto, gere um novo recorte 4:7 com o rosto no terço superior.
 - **Logo continua em PNG:** não há arquivo vetorial original, e vetorizar o PNG alteraria a marca. O PNG é servido redimensionado (48/96 px). Se o cliente tiver o SVG/AI/PDF original, vale trocar.
 - **Sem iframe de mapa:** o endereço tem link externo para o Google Maps, para não carregar rastreadores nem afrouxar a CSP.
 - **JSON-LD `Attorney`/`LegalService` + `Person`, sem `aggregateRating`.**
@@ -199,7 +202,7 @@ Trocas feitas nos textos próprios:
 - Número da OAB.
 - Place ID da ficha do Google e chave da Places API (passo a passo acima).
 - CEP, horário de atendimento, ano de início na advocacia e formação.
-- Foto em alta resolução: o arquivo atual tem 452×644 px e é exibido com até 420 px de largura, então em telas retina fica ampliado. Pedir pelo menos **1000×1400 px** (ideal 1200×1680, mesmo enquadramento, retrato vertical), de preferência com fundo transparente ou neutro.
+- Foto em alta resolução: o retrato do Hero é um recorte de 272×476 px (do original de 452×644) exibido com até 340 px de largura, então fica ampliado mesmo em telas comuns. Pedir a foto original sem a máscara oval, com pelo menos **1000×1750 px** (proporção 4:7, ou maior para recortar), retrato vertical, fundo neutro e espaço acima da cabeça.
 - Logo em formato vetorial (SVG, AI ou PDF), se existir.
 - Domínio próprio (quando houver: configurar na Vercel e definir `NEXT_PUBLIC_SITE_URL`).
 - Validação de todos os textos.

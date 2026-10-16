@@ -95,22 +95,28 @@ export default function Hero() {
           </ul>
         </div>
 
-        <div className="relative mx-auto w-full max-w-[290px] sm:max-w-[360px] lg:mr-0 lg:max-w-[420px] animate-fade-in">
-          {/* Thin gold arch, offset behind the portrait, echoing the logo's frame. */}
+        <div className="relative mx-auto w-full max-w-[260px] sm:max-w-[300px] lg:mr-4 lg:max-w-[340px] animate-fade-in">
+          {/* Concentric frame: same arch shape grown by the gap on every side
+              (rounded-t-full keeps the radius at half the width), so the
+              spacing is identical all around and the line closes at the base. */}
           <div
             aria-hidden="true"
-            className="absolute inset-0 translate-x-4 -translate-y-4 rounded-t-full border border-gold/45 [mask-image:linear-gradient(to_bottom,black_70%,transparent)]"
+            className="absolute -inset-3 rounded-t-full border border-gold/60 sm:-inset-4"
           />
-          <div className="relative aspect-[452/600] overflow-hidden rounded-t-full bg-[radial-gradient(ellipse_at_50%_30%,#2b2f37,var(--color-bg-secondary)_70%)] [mask-image:linear-gradient(to_bottom,black_82%,transparent)]">
+          <div className="relative aspect-[4/7] overflow-hidden rounded-t-full bg-bg-secondary">
             {/* Not the LCP element (it fades in) and below the fold on phones,
                 so it keeps the default lazy loading — see README. */}
             <Image
-              src="/assets/matheus-oval.png"
+              src="/assets/matheus-retrato.jpg"
               alt="Matheus Moraes"
-              width={452}
-              height={644}
-              sizes="(min-width: 1024px) 420px, (min-width: 640px) 360px, 290px"
-              className="absolute inset-x-0 top-[4%] w-full h-auto"
+              width={272}
+              height={476}
+              sizes="(min-width: 1024px) 340px, (min-width: 640px) 300px, 260px"
+              className="h-full w-full object-cover object-top"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-bg-primary/75 to-transparent"
             />
           </div>
         </div>
