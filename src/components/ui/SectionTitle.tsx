@@ -6,7 +6,7 @@ export default function SectionTitle({ className, children, ...props }: SectionT
   return (
     <h2
       className={cn(
-        "font-heading text-[clamp(34px,4vw,46px)] text-text-heading",
+        "font-heading text-[clamp(30px,3.6vw,44px)] leading-[1.15] font-medium text-text-heading text-balance",
         className
       )}
       {...props}

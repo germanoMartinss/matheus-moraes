@@ -1,7 +1,12 @@
 import Image from "next/image";
 import ButtonLink from "@/components/ui/Button";
+import { Container } from "@/components/ui/Section";
+import { ArrowRight, MapPin, Shield, Video } from "@/components/icons";
+import { practiceAreas } from "@/data/areas";
 import { trustPoints } from "@/data/hero";
 import { oabLabel, site, whatsappUrl } from "@/lib/site";
+
+const trustIcons = { video: Video, shield: Shield, pin: MapPin };
 
 export default function Hero() {
   const oab = oabLabel();
@@ -9,84 +14,107 @@ export default function Hero() {
     <section
       id="topo"
       aria-labelledby="topo-titulo"
-      className="relative min-h-screen grid grid-cols-1 min-[861px]:grid-cols-[1.1fr_0.9fr] items-center gap-10 px-[6vw] pt-[120px] pb-[60px] overflow-hidden bg-bg-primary bg-glow-gold"
+      className="relative overflow-hidden bg-bg-primary bg-glow-gold pt-[112px] pb-16 md:pt-[136px] md:pb-24"
     >
-      <div aria-hidden="true" className="absolute inset-0 opacity-5 pointer-events-none bg-hatch" />
-      <div className="relative z-10 max-w-[640px]">
-        <div className="text-[15px] tracking-[3px] text-gold uppercase mb-[22px] animate-fade-in-up">
-          Santos, SP · Atuação Nacional
-        </div>
-        <div className="mb-6 animate-fade-in-up" style={{ animationDelay: "0.05s" }}>
-          <p className="font-heading text-[26px] text-text-heading">{site.name}</p>
+      <div aria-hidden="true" className="absolute inset-0 opacity-[0.04] pointer-events-none bg-hatch" />
+
+      <Container className="relative grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+        <div className="max-w-[640px]">
+          <p className="flex items-center gap-3 text-[12px] font-medium tracking-[0.14em] text-gold uppercase sm:text-[13px] sm:tracking-[0.22em] animate-fade-in-up">
+            <span aria-hidden="true" className="h-px w-8 bg-gold/70" />
+            {site.brand}
+          </p>
+
+          <h1
+            id="topo-titulo"
+            className="mt-6 font-heading text-[clamp(44px,6.4vw,80px)] leading-[1.04] font-semibold text-text-heading animate-fade-in-up"
+            style={{ animationDelay: "0.08s" }}
+          >
+            {site.name}
+          </h1>
+
           {oab && (
-            <p className="text-[14px] tracking-[2px] text-gold uppercase mt-1">{oab}</p>
+            <p
+              className="mt-3 text-[14px] font-medium tracking-[0.18em] text-gold uppercase animate-fade-in-up"
+              style={{ animationDelay: "0.12s" }}
+            >
+              {oab}
+            </p>
           )}
-        </div>
-        <h1
-          id="topo-titulo"
-          className="font-heading text-[clamp(48px,6.2vw,76px)] leading-[1.12] mb-7 text-text-heading font-semibold animate-fade-in-up"
-          style={{ animationDelay: "0.1s" }}
-        >
-          Defesa séria e dedicada dos seus interesses.
-        </h1>
-        <p
-          className="text-2xl leading-[1.7] text-text-secondary-light mb-10 max-w-[580px] animate-fade-in-up"
-          style={{ animationDelay: "0.2s" }}
-        >
-          Assessoria jurídica em Direito de Família, Direito Médico, Direito
-          Criminal e Concursos Públicos, com atendimento presencial em Santos e
-          online em todo o país.
-        </p>
-        <div
-          className="flex gap-[18px] flex-wrap animate-fade-in-up"
-          style={{ animationDelay: "0.3s" }}
-        >
-          <ButtonLink href={whatsappUrl()} variant="primary" size="xl">
-            Falar no WhatsApp
-          </ButtonLink>
-          <ButtonLink href="#areas" variant="secondary" size="xl">
-            Áreas de Atuação
-          </ButtonLink>
+
+          <ul
+            aria-label="Áreas de atuação"
+            className="mt-7 grid grid-cols-2 gap-x-6 gap-y-2 text-[15px] text-text-secondary-light sm:flex sm:flex-wrap animate-fade-in-up"
+            style={{ animationDelay: "0.16s" }}
+          >
+            {practiceAreas.map((area) => (
+              <li key={area.title} className="flex items-center gap-2.5">
+                <span aria-hidden="true" className="h-1 w-1 shrink-0 rounded-full bg-gold" />
+                {area.title}
+              </li>
+            ))}
+          </ul>
+
+          <p
+            className="mt-8 font-heading text-[clamp(22px,2.4vw,28px)] leading-[1.4] text-text-heading/90 text-balance animate-fade-in-up"
+            style={{ animationDelay: "0.22s" }}
+          >
+            Defesa séria e dedicada dos seus interesses, com atendimento
+            presencial em Santos e online em todo o país.
+          </p>
+
+          <div
+            className="mt-10 flex flex-wrap gap-4 animate-fade-in-up"
+            style={{ animationDelay: "0.28s" }}
+          >
+            <ButtonLink href={whatsappUrl()} size="lg" className="w-full sm:w-auto">
+              Agendar uma conversa
+              <ArrowRight
+                size={18}
+                className="transition-transform duration-300 motion-safe:group-hover/button:translate-x-1"
+              />
+            </ButtonLink>
+            <ButtonLink href="#areas" variant="secondary" size="lg" className="w-full sm:w-auto">
+              Áreas de atuação
+            </ButtonLink>
+          </div>
+
+          <ul
+            className="mt-12 flex flex-col gap-4 border-t border-gold/15 pt-8 sm:flex-row sm:flex-wrap sm:gap-x-8 animate-fade-in-up"
+            style={{ animationDelay: "0.34s" }}
+          >
+            {trustPoints.map((point) => {
+              const Icon = trustIcons[point.icon];
+              return (
+                <li key={point.label} className="flex items-center gap-3 text-[14px] leading-snug text-text-secondary">
+                  <Icon size={18} className="shrink-0 text-gold" />
+                  {point.label}
+                </li>
+              );
+            })}
+          </ul>
         </div>
 
-        <div
-          className="flex flex-col gap-3 mt-14 pt-8 border-t border-gold/15 animate-fade-in-up"
-          style={{ animationDelay: "0.4s" }}
-        >
-          {trustPoints.map((point) => (
-            <div key={point} className="flex items-center gap-3">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-                className="text-gold shrink-0"
-              >
-                <path d="M20 6L9 17l-5-5" />
-              </svg>
-              <span className="text-[15px] text-text-secondary">{point}</span>
-            </div>
-          ))}
+        <div className="relative mx-auto w-full max-w-[290px] sm:max-w-[360px] lg:mr-0 lg:max-w-[420px] animate-fade-in">
+          {/* Thin gold arch, offset behind the portrait, echoing the logo's frame. */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 translate-x-4 -translate-y-4 rounded-t-full border border-gold/45 [mask-image:linear-gradient(to_bottom,black_70%,transparent)]"
+          />
+          <div className="relative aspect-[452/600] overflow-hidden rounded-t-full bg-[radial-gradient(ellipse_at_50%_30%,#2b2f37,var(--color-bg-secondary)_70%)] [mask-image:linear-gradient(to_bottom,black_82%,transparent)]">
+            {/* Not the LCP element (it fades in) and below the fold on phones,
+                so it keeps the default lazy loading — see README. */}
+            <Image
+              src="/assets/matheus-oval.png"
+              alt="Matheus Moraes"
+              width={452}
+              height={644}
+              sizes="(min-width: 1024px) 420px, (min-width: 640px) 360px, 290px"
+              className="absolute inset-x-0 top-[4%] w-full h-auto"
+            />
+          </div>
         </div>
-      </div>
-
-      <div className="relative z-10 flex justify-center items-center h-full animate-fade-in">
-        {/* Not the LCP element (it fades in) and below the fold on phones, so it
-            keeps the default lazy loading — see README. */}
-        <Image
-          src="/assets/matheus-oval.png"
-          alt="Matheus Moraes"
-          width={452}
-          height={644}
-          sizes="(min-width: 861px) min(calc(39.6vw - 18px), 520px), min(88vw, 520px)"
-          className="relative w-[min(100%,520px)] h-auto object-contain drop-shadow-photo transition-transform duration-700 motion-safe:hover:scale-[1.02]"
-        />
-      </div>
+      </Container>
     </section>
   );
 }

@@ -1,41 +1,52 @@
 import Reveal from "@/components/ui/Reveal";
 import Section from "@/components/ui/Section";
-import Eyebrow from "@/components/ui/Eyebrow";
-import SectionTitle from "@/components/ui/SectionTitle";
+import SectionHeading from "@/components/ui/SectionHeading";
 import AreaIcon from "@/components/icons/AreaIcon";
+import { Check } from "@/components/icons";
 import { practiceAreas } from "@/data/areas";
 
 export default function AreasAtuacao() {
   return (
-    <Section id="areas" aria-labelledby="areas-titulo">
-      <Reveal className="text-center max-w-[640px] mx-auto mb-16">
-        <Eyebrow>Áreas de Atuação</Eyebrow>
-        <SectionTitle id="areas-titulo" className="mb-[18px]">Como podemos ajudar</SectionTitle>
-        <p className="text-lg text-text-secondary leading-[1.7]">
-          Conheça as áreas em que o escritório atua e os tipos de questão
-          que costumam chegar até nós.
-        </p>
+    <Section id="areas" tone="secondary" aria-labelledby="areas-titulo">
+      <Reveal>
+        <SectionHeading
+          id="areas-titulo"
+          eyebrow="Áreas de atuação"
+          title="Como podemos ajudar"
+          intro="Conheça as áreas em que o escritório atua e alguns exemplos das questões mais comuns em cada uma."
+        />
       </Reveal>
-      <div className="grid grid-cols-2 min-[861px]:grid-cols-4 gap-px bg-gold/15 border border-gold/15">
+
+      <div className="mt-14 grid gap-px border border-gold/15 bg-gold/15 md:grid-cols-2">
         {practiceAreas.map((area, index) => (
-          <Reveal key={area.number} delay={index * 90} className="h-full">
-            <div className="group h-full bg-bg-secondary px-8 py-11 transition-all duration-300 hover:bg-bg-secondary/60 hover:shadow-card-hover">
-              <div className="flex items-center justify-between mb-5">
-                <AreaIcon
-                  name={area.icon}
-                  className="text-gold transition-transform duration-300 motion-safe:group-hover:-translate-y-1"
-                />
-                <span aria-hidden="true" className="font-heading text-[30px] text-gold/75">
+          <Reveal key={area.number} delay={(index % 2) * 90} className="h-full">
+            <article
+              aria-labelledby={`area-${area.number}`}
+              className="group flex h-full flex-col bg-bg-secondary p-8 transition-[background-color,box-shadow] duration-300 hover:bg-bg-primary/60 hover:shadow-card-hover sm:p-10"
+            >
+              <div className="flex items-center justify-between">
+                <span className="flex h-12 w-12 items-center justify-center rounded-full border border-gold/30 text-gold transition-colors duration-300 group-hover:border-gold/70">
+                  <AreaIcon name={area.icon} className="h-6 w-6" />
+                </span>
+                <span aria-hidden="true" className="font-heading text-[28px] text-gold/75">
                   {area.number}
                 </span>
               </div>
-              <h3 className="text-[20.5px] text-text-heading mb-3 font-medium">
+              <h3 id={`area-${area.number}`} className="mt-7 font-heading text-[25px] font-medium text-text-heading">
                 {area.title}
               </h3>
-              <p className="text-[16px] leading-[1.7] text-text-secondary">
+              <p className="mt-3 text-[16px] leading-[1.75] text-text-secondary text-pretty">
                 {area.description}
               </p>
-            </div>
+              <ul className="mt-6 space-y-3 border-t border-gold/10 pt-6">
+                {area.examples.map((example) => (
+                  <li key={example} className="flex gap-3 text-[15.5px] leading-snug text-text-secondary-light">
+                    <Check size={17} className="mt-0.5 shrink-0 text-gold" />
+                    {example}
+                  </li>
+                ))}
+              </ul>
+            </article>
           </Reveal>
         ))}
       </div>

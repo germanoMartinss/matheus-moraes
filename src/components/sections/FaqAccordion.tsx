@@ -13,7 +13,7 @@ export default function FaqAccordion({ items }: { items: FaqItem[] }) {
   };
 
   return (
-    <div>
+    <div className="border-t border-gold/[0.18]">
       {items.map((item, index) => {
         const isOpen = openIndex === index;
         const buttonId = `${baseId}-pergunta-${index}`;
@@ -28,9 +28,9 @@ export default function FaqAccordion({ items }: { items: FaqItem[] }) {
                   aria-expanded={isOpen}
                   aria-controls={panelId}
                   onClick={() => toggleFaq(index)}
-                  className="w-full flex justify-between items-center gap-5 py-[26px] text-left cursor-pointer"
+                  className="group w-full flex justify-between items-center gap-5 py-6 text-left cursor-pointer"
                 >
-                  <span className="text-[18.5px] text-text-question font-medium">
+                  <span className="text-[18px] leading-snug text-text-question font-medium transition-colors duration-300 group-hover:text-gold-light">
                     {item.question}
                   </span>
                   <span
@@ -51,7 +51,7 @@ export default function FaqAccordion({ items }: { items: FaqItem[] }) {
                 className={`accordion-content ${isOpen ? "is-open" : ""}`}
               >
                 <div>
-                  <p className="text-[17px] leading-[1.75] text-text-answer max-w-[680px] pb-[26px]">
+                  <p className="text-[16.5px] leading-[1.8] text-text-answer max-w-[62ch] pb-6 pr-10 text-pretty">
                     {item.answer}
                   </p>
                 </div>

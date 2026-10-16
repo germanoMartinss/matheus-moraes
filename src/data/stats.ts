@@ -1,7 +1,7 @@
 import type { Stat } from "@/types";
 
-export const aboutStats: Stat[] = [
-  { value: "4", label: "Áreas de atuação" },
-  { value: "SP", label: "Sede em Santos" },
-  { value: "BR", label: "Atendimento online em todo o país" },
+export const aboutFacts: Stat[] = [
+  { value: "Santos, SP", label: "Sede do escritório" },
+  { value: "Presencial e online", label: "Formas de atendimento" },
+  { value: "Todo o Brasil", label: "Abrangência" },
 ];

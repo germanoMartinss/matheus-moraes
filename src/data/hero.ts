@@ -1,5 +1,5 @@
 export const trustPoints = [
-  "Atendimento presencial e remoto",
-  "Consulta inicial sigilosa",
-  "Atuação em todo o território nacional",
-];
+  { icon: "video", label: "Atendimento presencial e online" },
+  { icon: "shield", label: "Sigilo profissional" },
+  { icon: "pin", label: "Sede em Santos, SP" },
+] as const;

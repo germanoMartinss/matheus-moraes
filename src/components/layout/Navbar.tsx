@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import ButtonLink from "@/components/ui/Button";
+import { Container } from "@/components/ui/Section";
 import { navLinks } from "@/data/navigation";
 import { site, whatsappUrl } from "@/lib/site";
 
@@ -41,8 +42,8 @@ export default function Navbar() {
           : "bg-bg-primary/70 backdrop-blur-sm border-transparent"
       }`}
     >
-      <div
-        className={`flex items-center justify-between px-[6vw] transition-all duration-300 ${
+      <Container
+        className={`flex items-center justify-between transition-[padding] duration-300 ${
           isScrolled ? "py-3" : "py-[18px]"
         }`}
       >
@@ -64,12 +65,12 @@ export default function Navbar() {
           </div>
         </a>
 
-        <nav aria-label="Principal" className="hidden min-[861px]:flex items-center gap-9">
+        <nav aria-label="Principal" className="hidden min-[1180px]:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="relative text-base text-text-nav transition-colors hover:text-gold-light group"
+              className="relative text-[15px] text-text-nav transition-colors hover:text-gold-light group"
             >
               {link.label}
               <span className="absolute -bottom-1 left-0 h-px w-0 bg-gold transition-all duration-300 group-hover:w-full" />
@@ -88,7 +89,7 @@ export default function Navbar() {
           aria-expanded={isMenuOpen}
           aria-controls={MOBILE_MENU_ID}
           onClick={() => setIsMenuOpen((open) => !open)}
-          className="min-[861px]:hidden flex flex-col justify-center items-center gap-[5px] w-11 h-11 -m-1.5"
+          className="min-[1180px]:hidden flex flex-col justify-center items-center gap-[5px] w-11 h-11 -m-1.5"
         >
           <span
             className={`block h-[1.5px] w-6 bg-text-primary transition-transform duration-300 ${
@@ -106,12 +107,12 @@ export default function Navbar() {
             }`}
           />
         </button>
-      </div>
+      </Container>
 
       <div
         id={MOBILE_MENU_ID}
         inert={!isMenuOpen}
-        className={`min-[861px]:hidden grid transition-all duration-300 ease-out border-t bg-bg-primary ${
+        className={`min-[1180px]:hidden grid transition-all duration-300 ease-out border-t bg-bg-primary ${
           isMenuOpen
             ? "grid-rows-[1fr] opacity-100 border-gold/15"
             : "grid-rows-[0fr] opacity-0 border-transparent"
@@ -120,19 +121,19 @@ export default function Navbar() {
         <div className="overflow-hidden">
           <nav
             aria-label="Menu móvel"
-            className="flex flex-col items-start gap-6 px-[6vw] pb-8 pt-6"
+            className="mx-auto flex max-w-[1200px] flex-col items-start gap-1 px-5 pb-8 pt-4 sm:px-8"
           >
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={closeMenu}
-                className="text-base text-text-nav hover:text-gold-light"
+                className="flex min-h-11 items-center text-[17px] text-text-nav hover:text-gold-light"
               >
                 {link.label}
               </a>
             ))}
-            <ButtonLink href={whatsappUrl()} onClick={closeMenu} variant="outline" size="sm">
+            <ButtonLink href={whatsappUrl()} onClick={closeMenu} variant="outline" size="sm" className="mt-4">
               Agendar conversa
             </ButtonLink>
           </nav>

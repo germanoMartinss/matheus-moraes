@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
 import Sobre from "@/components/sections/Sobre";
 import AreasAtuacao from "@/components/sections/AreasAtuacao";
+import Atendimento from "@/components/sections/Atendimento";
 import GoogleReviews from "@/components/sections/GoogleReviews";
 import Faq from "@/components/sections/Faq";
 import Contato from "@/components/sections/Contato";
@@ -25,8 +26,9 @@ export default function Home() {
       <Navbar />
       <main id="conteudo" tabIndex={-1} className="outline-none">
         <Hero />
-        <Sobre />
         <AreasAtuacao />
+        <Sobre />
+        <Atendimento />
         <GoogleReviews />
         <Faq />
         <Contato />

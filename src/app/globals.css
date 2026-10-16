@@ -83,6 +83,8 @@
 
   html {
     scroll-behavior: smooth;
+    /* Keeps anchored sections clear of the fixed header. */
+    scroll-padding-top: 88px;
   }
 
   body {
@@ -153,7 +155,7 @@
 
   .reveal.is-pending {
     opacity: 0;
-    transform: translateY(28px);
+    transform: translateY(20px);
     transition: none;
     will-change: opacity, transform;
   }
@@ -171,10 +173,10 @@
   }
 
   /* The negative margin pulls the answer into the question's bottom
-     padding, so the open gap between them is 16px. */
+     padding, so the open gap between them is 12px. */
   .accordion-content.is-open {
     grid-template-rows: 1fr;
-    margin-top: -10px;
+    margin-top: -12px;
     opacity: 1;
     visibility: visible;
     transition: grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1),
@@ -191,7 +193,7 @@
   @media (scripting: none) {
     .accordion-content {
       grid-template-rows: 1fr;
-      margin-top: -10px;
+      margin-top: -12px;
       opacity: 1;
       visibility: visible;
     }

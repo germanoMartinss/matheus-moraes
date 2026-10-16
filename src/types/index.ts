@@ -9,7 +9,13 @@ export type PracticeArea = {
   number: string;
   title: string;
   description: string;
+  examples: string[];
   icon: AreaIcon;
+};
+
+export type ProcessStep = {
+  title: string;
+  description: string;
 };
 
 export type FaqItem = {

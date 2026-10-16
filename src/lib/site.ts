@@ -79,5 +79,17 @@ export function oabLabel() {
   return site.oab.number ? `OAB/${site.oab.state} nº ${site.oab.number}` : "";
 }
 
+export const addressLine = [
+  `${site.address.street}, ${site.address.complement}`,
+  site.address.building,
+  site.address.district,
+  `${site.address.city}, ${site.address.state}`,
+].join(" — ");
+
+/** Google Maps search link (plain external link; no embedded map or trackers). */
+export const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  `${site.address.street}, ${site.address.city} - ${site.address.state}`
+)}`;
+
 export const phoneUrl = `tel:${site.phone.e164}`;
 export const emailUrl = `mailto:${site.email}`;

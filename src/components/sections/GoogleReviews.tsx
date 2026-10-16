@@ -1,8 +1,8 @@
 import Reveal from "@/components/ui/Reveal";
 import Section from "@/components/ui/Section";
-import Eyebrow from "@/components/ui/Eyebrow";
-import SectionTitle from "@/components/ui/SectionTitle";
+import SectionHeading from "@/components/ui/SectionHeading";
 import ButtonLink from "@/components/ui/Button";
+import { ArrowUpRight } from "@/components/icons";
 import { ratingFallback } from "@/data/reviews";
 import { getPlaceRating } from "@/lib/google-places";
 import { site } from "@/lib/site";
@@ -55,56 +55,40 @@ export default async function GoogleReviews() {
     : dateFormat.format(new Date(`${ratingFallback.updatedAt}T12:00:00-03:00`));
 
   return (
-    <Section id="avaliacoes" tone="secondary" aria-labelledby="avaliacoes-titulo">
-      <Reveal className="text-center max-w-[720px] mx-auto">
-        <Eyebrow>Avaliações</Eyebrow>
-        <SectionTitle id="avaliacoes-titulo" className="mb-6">
-          Avaliações no Google
-        </SectionTitle>
-        <p className="text-lg text-text-secondary leading-[1.7] mb-10">
-          Nota média e número de avaliações públicas da ficha do escritório no
-          Google.
-        </p>
+    <Section id="avaliacoes" aria-labelledby="avaliacoes-titulo">
+      <Reveal className="grid items-center gap-10 border border-gold/20 bg-bg-secondary/60 p-6 sm:p-12 lg:grid-cols-[1fr_auto] lg:gap-16">
+        <div className="min-w-0">
+          <SectionHeading
+            id="avaliacoes-titulo"
+            eyebrow="Avaliações"
+            title="Avaliações no Google"
+            intro="Nota média e número de avaliações públicas da ficha do escritório no Google. Os comentários podem ser lidos diretamente na ficha."
+          />
+          <div className="mt-8">
+            <ButtonLink
+              href={profileUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="outline"
+            >
+              Ver as avaliações no Google
+              <span className="sr-only"> (abre em nova aba)</span>
+              <ArrowUpRight size={16} />
+            </ButtonLink>
+          </div>
+        </div>
 
-        <div className="inline-flex flex-col items-center gap-3 border border-gold/20 rounded-[2px] px-10 py-8 bg-bg-primary/40">
-          <span className="font-heading text-[56px] leading-none text-gold">
+        <div className="flex flex-col items-center gap-3 border-gold/15 text-center lg:border-l lg:pl-16">
+          <span className="font-heading text-[64px] leading-none text-gold">
             {rating.toFixed(1).replace(".", ",")}
           </span>
           <Stars rating={rating} />
-          <span className="text-[15px] text-text-secondary">
-            {reviewCount} avaliações no Google
+          <span className="text-[15px] text-text-secondary-light">
+            {reviewCount} avaliações
           </span>
-        </div>
-
-        <p className="mt-5 text-[13px] text-text-secondary">
-          Dados: Google Maps · atualizado em {updatedAt}
-        </p>
-
-        <div className="mt-10">
-          <ButtonLink
-            href={profileUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            variant="outlineSubtle"
-            size="md"
-            withIcon
-          >
-            Ver as avaliações no Google
-            <span className="sr-only"> (abre em nova aba)</span>
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M7 17L17 7M7 7h10v10" />
-            </svg>
-          </ButtonLink>
+          <span className="text-[13px] text-text-secondary">
+            Dados: Google Maps · atualizado em {updatedAt}
+          </span>
         </div>
       </Reveal>
     </Section>
