@@ -1,5 +1,7 @@
 import Reveal from "./Reveal";
 import reviewsData from "@/data/google-reviews.json";
+import { getPlaceRating } from "../src/lib/google-places";
+import { site } from "../src/lib/site";
 
 const initials = (name: string) => name.trim().charAt(0).toUpperCase();
 
@@ -31,8 +33,13 @@ function Stars({ rating }: { rating: number }) {
   );
 }
 
-export default function GoogleReviews() {
-  const { aggregate_rating, review_count, reviews, source_url } = reviewsData;
+export default async function GoogleReviews() {
+  const { reviews } = reviewsData;
+  const place = await getPlaceRating(site.google.placeId);
+  // Fallback: last values saved in the JSON when the API is unavailable.
+  const aggregate_rating = place?.rating ?? reviewsData.aggregate_rating;
+  const review_count = place?.userRatingCount ?? reviewsData.review_count;
+  const source_url = place?.googleMapsUri ?? site.google.profileUrl;
 
   if (!reviews || reviews.length === 0) return null;
 

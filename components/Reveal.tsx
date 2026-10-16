@@ -6,15 +6,12 @@ type RevealProps = {
   children: React.ReactNode;
   delay?: number;
   className?: string;
-  as?: "div" | "span";
 };
-
 
 export default function Reveal({
   children,
   delay = 0,
   className = "",
-  as = "div",
 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -37,15 +34,13 @@ export default function Reveal({
     return () => observer.disconnect();
   }, []);
 
-  const Tag = as;
-
   return (
-    <Tag
-      ref={ref as never}
+    <div
+      ref={ref}
       className={`reveal ${isVisible ? "is-visible" : ""} ${className}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
-    </Tag>
+    </div>
   );
 }

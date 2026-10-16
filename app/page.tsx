@@ -8,6 +8,9 @@ import Contato from "@/components/Contato";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 
+// Rating and review count from the Places API are refreshed once a day.
+export const revalidate = 86400;
+
 export default function Home() {
   return (
     <div className="min-h-screen overflow-x-hidden">

@@ -12,7 +12,7 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
-    // Python scraper and its virtualenv — not part of the Next.js app.
+    // Local Python tooling (ignored by git) — not part of the Next.js app.
     "scripts/**",
   ]),
 ]);

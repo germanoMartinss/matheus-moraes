@@ -36,7 +36,7 @@ yarn-error.log*
 # vercel
 .vercel
 
-# python scraper
+# local python tooling
 scripts/venv/
 scripts/__pycache__/
 *.pyc

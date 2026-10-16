@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Matheus Moraes · Advocacia e Assessoria Jurídica
 
-## Getting Started
+Site institucional de página única do advogado Matheus Moraes (Santos, SP), publicado em https://matheus-moraes.vercel.app.
 
-First, run the development server:
+Prototipado no Claude Design como HTML estático e migrado para Next.js (App Router) + Tailwind CSS v4.
+
+## Como rodar
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # http://localhost:3000
+npm run lint
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Identidade visual
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Herdada do protótipo (o HTML de referência foi removido do repositório; está no histórico, commit `15328a0`).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Cores:** fundos `#0f1117` / `#141620` / `#0b0d12` (navy/preto), dourado `#c8a862` (hover `#ddc48a`), texto `#eae7e0` / `#f6f3ec`, texto secundário `#9d9a91` / `#c3bfb5`.
+- **Tipografia:** Playfair Display (títulos, 500–700) e Jost (corpo, 400–600), via `next/font`.
+- **Formas:** botões retos (raio 2 px), linhas finas douradas entre cards, hachura diagonal discreta no Hero e no Contato.
+- **Assets:** `public/assets/mm-logo-white.png` é a marca "MM" recortada do logo original, em branco sobre fundo transparente. `public/assets/matheus-oval.png` é a foto com máscara oval esmaecida (fundo de estúdio removido por gradiente). Se houver foto com fundo transparente de verdade, substituir mantendo o nome.
 
-## Learn More
+## Avaliações do Google
 
-To learn more about Next.js, take a look at the following resources:
+A nota e o total de avaliações vêm da [Places API (New)](https://developers.google.com/maps/documentation/places/web-service/place-details) — Place Details, campos `rating`, `userRatingCount` e `googleMapsUri` — num Server Component com revalidação de 24 h.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Chave: variável de servidor `GOOGLE_PLACES_API_KEY` (nunca `NEXT_PUBLIC_`).
+- Place ID: `site.google.placeId` em `src/lib/site.ts`.
+- Sem chave, sem Place ID ou com falha da API, a página usa os últimos valores salvos em `data/google-reviews.json`.

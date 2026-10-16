@@ -13,9 +13,6 @@
 
   --font-heading: var(--font-playfair);
   --font-body: var(--font-jost);
-
-  --section-padding-y: 110px;
-  --section-padding-x: 6vw;
 }
 
 @theme inline {
@@ -77,7 +74,6 @@
 
   ::-webkit-scrollbar-thumb {
     background: var(--color-gold);
-    opacity: 0.5;
     border-radius: 6px;
   }
 }
@@ -116,35 +112,12 @@
   }
 }
 
-@keyframes soft-float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-14px);
-  }
-}
-
-@keyframes shimmer-line {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-
 .animate-fade-in-up {
   animation: fade-in-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .animate-fade-in {
   animation: fade-in 1s ease both;
-}
-
-.animate-float {
-  animation: soft-float 6s ease-in-out infinite;
 }
 
 .accordion-content {
@@ -177,8 +150,7 @@
   }
 
   .animate-fade-in-up,
-  .animate-fade-in,
-  .animate-float {
+  .animate-fade-in {
     animation: none !important;
   }
 }

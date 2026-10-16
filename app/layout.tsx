@@ -11,7 +11,7 @@ const playfairDisplay = Playfair_Display({
 const jost = Jost({
   variable: "--font-jost",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["400", "500", "600"],
 });
 
 const siteUrl = "https://www.matheusmoraesadvocacia.com.br";
@@ -21,15 +21,6 @@ export const metadata: Metadata = {
   title: "Matheus Moraes | Advocacia e Assessoria Jurídica em Santos, SP",
   description:
     "Advocacia em Santos, SP com atuação nacional. Assessoria jurídica personalizada em Direito de Família, Direito Médico, Direito Criminal e Concursos Públicos.",
-  keywords: [
-    "advogado Santos SP",
-    "advocacia Santos",
-    "Direito de Família",
-    "Direito Médico",
-    "Direito Criminal",
-    "Concursos Públicos",
-    "Matheus Moraes advogado",
-  ],
   openGraph: {
     title: "Matheus Moraes | Advocacia e Assessoria Jurídica",
     description:
