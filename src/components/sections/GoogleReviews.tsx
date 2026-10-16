@@ -1,15 +1,19 @@
-import Reveal from "./Reveal";
-import reviewsData from "@/data/google-reviews.json";
-import { getPlaceRating } from "../src/lib/google-places";
-import { site } from "../src/lib/site";
+import Reveal from "@/components/ui/Reveal";
+import Section from "@/components/ui/Section";
+import Eyebrow from "@/components/ui/Eyebrow";
+import SectionTitle from "@/components/ui/SectionTitle";
+import ButtonLink from "@/components/ui/Button";
+import { reviewsFallback } from "@/data/reviews";
+import { getPlaceRating } from "@/lib/google-places";
+import { site } from "@/lib/site";
 
 const initials = (name: string) => name.trim().charAt(0).toUpperCase();
 
 const avatarPalette = [
   "bg-gold/20 text-gold",
-  "bg-[#8a9a8f]/20 text-[#a9c2ae]",
-  "bg-[#a8896b]/20 text-[#d3ab84]",
-  "bg-[#7f93ad]/20 text-[#a7bdd9]",
+  "bg-avatar-sage/20 text-avatar-sage-fg",
+  "bg-avatar-copper/20 text-avatar-copper-fg",
+  "bg-avatar-steel/20 text-avatar-steel-fg",
 ];
 
 function Stars({ rating }: { rating: number }) {
@@ -34,32 +38,28 @@ function Stars({ rating }: { rating: number }) {
 }
 
 export default async function GoogleReviews() {
-  const { reviews } = reviewsData;
+  const { reviews } = reviewsFallback;
   const place = await getPlaceRating(site.google.placeId);
-  // Fallback: last values saved in the JSON when the API is unavailable.
-  const aggregate_rating = place?.rating ?? reviewsData.aggregate_rating;
-  const review_count = place?.userRatingCount ?? reviewsData.review_count;
-  const source_url = place?.googleMapsUri ?? site.google.profileUrl;
+  // Fallback: last values saved by hand when the API is unavailable.
+  const rating = place?.rating ?? reviewsFallback.rating;
+  const reviewCount = place?.userRatingCount ?? reviewsFallback.reviewCount;
+  const profileUrl = place?.googleMapsUri ?? site.google.profileUrl;
 
-  if (!reviews || reviews.length === 0) return null;
+  if (reviews.length === 0) return null;
 
   return (
-    <section id="avaliacoes" className="px-[6vw] py-[110px] bg-bg-secondary">
+    <Section id="avaliacoes" tone="secondary">
       <Reveal className="text-center max-w-[720px] mx-auto mb-14">
-        <div className="text-[14px] tracking-[3px] text-gold uppercase mb-4">
-          Avaliações
-        </div>
-        <h2 className="font-heading text-[clamp(34px,4vw,46px)] text-text-heading mb-6">
-          O que dizem os clientes
-        </h2>
-        {aggregate_rating && review_count && (
+        <Eyebrow>Avaliações</Eyebrow>
+        <SectionTitle className="mb-6">O que dizem os clientes</SectionTitle>
+        {rating && reviewCount && (
           <div className="inline-flex items-center gap-3 border border-gold/20 rounded-[2px] px-6 py-3 bg-bg-primary/40">
             <span className="font-heading text-[26px] text-gold">
-              {aggregate_rating.toFixed(1).replace(".", ",")}
+              {rating.toFixed(1).replace(".", ",")}
             </span>
-            <Stars rating={Math.round(aggregate_rating)} />
+            <Stars rating={Math.round(rating)} />
             <span className="text-[15px] text-text-secondary whitespace-nowrap">
-              · {review_count} avaliações no Google
+              · {reviewCount} avaliações no Google
             </span>
           </div>
         )}
@@ -68,7 +68,7 @@ export default async function GoogleReviews() {
       <div className="grid grid-cols-1 min-[701px]:grid-cols-2 min-[1101px]:grid-cols-3 gap-px bg-gold/15 border border-gold/15">
         {reviews.map((review, index) => (
           <Reveal key={`${review.name}-${index}`} delay={index * 70} className="h-full">
-            <div className="h-full bg-bg-primary px-8 py-9 flex flex-col transition-all duration-300 hover:bg-bg-primary/70 hover:shadow-[inset_0_0_0_1px_rgba(200,168,98,0.35)]">
+            <div className="h-full bg-bg-primary px-8 py-9 flex flex-col transition-all duration-300 hover:bg-bg-primary/70 hover:shadow-card-hover">
               <svg
                 width="26"
                 height="26"
@@ -95,9 +95,9 @@ export default async function GoogleReviews() {
                     {review.name}
                   </div>
                   <div className="flex items-center gap-2">
-                    <Stars rating={Math.round(review.rating ?? 5)} />
+                    <Stars rating={review.rating} />
                     <span className="text-[12.5px] text-text-secondary whitespace-nowrap">
-                      {review.relative_date}
+                      {review.relativeDate}
                     </span>
                   </div>
                 </div>
@@ -107,30 +107,30 @@ export default async function GoogleReviews() {
         ))}
       </div>
 
-      {source_url && (
-        <Reveal className="text-center mt-12">
-          <a
-            href={source_url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-[15px] tracking-[0.5px] px-8 py-[14px] border border-gold/40 text-gold rounded-[2px] transition-all duration-300 hover:border-gold hover:bg-gold hover:text-bg-primary"
+      <Reveal className="text-center mt-12">
+        <ButtonLink
+          href={profileUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          variant="outlineSubtle"
+          size="md"
+          withIcon
+        >
+          Ver todas as avaliações no Google
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
-            Ver todas as avaliações no Google
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M7 17L17 7M7 7h10v10" />
-            </svg>
-          </a>
-        </Reveal>
-      )}
-    </section>
+            <path d="M7 17L17 7M7 7h10v10" />
+          </svg>
+        </ButtonLink>
+      </Reveal>
+    </Section>
   );
 }

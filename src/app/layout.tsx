@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Jost } from "next/font/google";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const playfairDisplay = Playfair_Display({
@@ -14,10 +15,8 @@ const jost = Jost({
   weight: ["400", "500", "600"],
 });
 
-const siteUrl = "https://www.matheusmoraesadvocacia.com.br";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE_URL),
   title: "Matheus Moraes | Advocacia e Assessoria Jurídica em Santos, SP",
   description:
     "Advocacia em Santos, SP com atuação nacional. Assessoria jurídica personalizada em Direito de Família, Direito Médico, Direito Criminal e Concursos Públicos.",
@@ -25,7 +24,7 @@ export const metadata: Metadata = {
     title: "Matheus Moraes | Advocacia e Assessoria Jurídica",
     description:
       "Defesa séria e dedicada dos seus interesses. Assessoria jurídica personalizada em Santos, SP e em todo o território nacional.",
-    url: siteUrl,
+    url: SITE_URL,
     siteName: "Matheus Moraes Advocacia",
     locale: "pt_BR",
     type: "website",

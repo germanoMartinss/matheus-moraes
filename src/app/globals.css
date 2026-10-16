@@ -10,6 +10,28 @@
   --color-text-heading: #f6f3ec;
   --color-text-secondary: #9d9a91;
   --color-text-secondary-light: #c3bfb5;
+  --color-text-soft: #e8e5dc;
+  --color-text-nav: #d8d4cb;
+  --color-text-question: #f0ede5;
+  --color-text-answer: #a8a49a;
+  --color-text-muted: #6b6860;
+
+  --color-avatar-sage: #8a9a8f;
+  --color-avatar-sage-fg: #a9c2ae;
+  --color-avatar-copper: #a8896b;
+  --color-avatar-copper-fg: #d3ab84;
+  --color-avatar-steel: #7f93ad;
+  --color-avatar-steel-fg: #a7bdd9;
+
+  --shadow-card-hover: inset 0 0 0 1px
+    color-mix(in srgb, var(--color-gold) 35%, transparent);
+  --shadow-gold-lift: 0 14px 30px
+    color-mix(in srgb, var(--color-gold) 30%, transparent);
+  --shadow-gold-lift-sm: 0 8px 20px
+    color-mix(in srgb, var(--color-gold) 25%, transparent);
+  --shadow-nav: 0 10px 30px rgb(0 0 0 / 0.25);
+  --shadow-float: 0 8px 24px rgb(0 0 0 / 0.35);
+  --drop-shadow-photo: 0 30px 60px rgb(0 0 0 / 0.5);
 
   --animate-fade-in-up: fade-in-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
   --animate-fade-in: fade-in 1s ease both;
@@ -33,6 +55,26 @@
       opacity: 1;
     }
   }
+}
+
+/* Diagonal gold hatching used behind the Hero and Contact sections. */
+@utility bg-hatch {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 38px,
+    var(--color-gold) 38px,
+    var(--color-gold) 39px
+  );
+}
+
+/* Soft gold glow in the top-left corner of the Hero. */
+@utility bg-glow-gold {
+  background-image: radial-gradient(
+    circle at 15% 20%,
+    color-mix(in srgb, var(--color-gold) 6%, transparent),
+    transparent 45%
+  );
 }
 
 @theme inline {

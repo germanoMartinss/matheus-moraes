@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { site } from "@/lib/site";
 
 export default function Footer() {
   return (
@@ -12,10 +13,10 @@ export default function Footer() {
           className="object-contain transition-transform duration-500 hover:rotate-[8deg]"
         />
         <span className="font-heading text-base text-text-secondary-light">
-          Matheus Moraes · Advocacia e Assessoria Jurídica
+          {site.legalName}
         </span>
       </div>
-      <span className="text-sm text-[#6b6860]">
+      <span className="text-sm text-text-muted">
         © {new Date().getFullYear()} Todos os direitos reservados.
       </span>
     </footer>

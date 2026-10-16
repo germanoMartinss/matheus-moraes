@@ -2,14 +2,9 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-
-const navLinks = [
-  { href: "#areas", label: "Áreas de Atuação" },
-  { href: "#sobre", label: "Sobre" },
-  { href: "#avaliacoes", label: "Avaliações" },
-  { href: "#faq", label: "FAQ" },
-  { href: "#contato", label: "Contato" },
-];
+import ButtonLink from "@/components/ui/Button";
+import { navLinks } from "@/data/navigation";
+import { site, whatsappUrl } from "@/lib/site";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,7 +21,7 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
         isScrolled
-          ? "bg-bg-primary/95 backdrop-blur-md border-gold/20 shadow-[0_10px_30px_rgba(0,0,0,0.25)]"
+          ? "bg-bg-primary/95 backdrop-blur-md border-gold/20 shadow-nav"
           : "bg-bg-primary/70 backdrop-blur-sm border-transparent"
       }`}
     >
@@ -45,10 +40,10 @@ export default function Navbar() {
           />
           <div className="leading-[1.1]">
             <div className="font-heading text-[19px] font-bold tracking-[0.5px] text-text-heading">
-              MATHEUS MORAES
+              {site.name.toUpperCase()}
             </div>
             <div className="text-[11px] tracking-[2px] text-gold uppercase">
-              Advocacia &amp; Assessoria Jurídica
+              {site.brand}
             </div>
           </div>
         </div>
@@ -58,18 +53,15 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="relative text-base text-[#d8d4cb] transition-colors hover:text-gold-light group"
+              className="relative text-base text-text-nav transition-colors hover:text-gold-light group"
             >
               {link.label}
               <span className="absolute -bottom-1 left-0 h-px w-0 bg-gold transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
-          <a
-            href="https://wa.me/5513996764688"
-            className="text-[15px] tracking-[0.5px] px-[22px] py-[11px] border border-gold text-gold rounded-[2px] whitespace-nowrap transition-all duration-300 hover:bg-gold hover:text-bg-primary hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(200,168,98,0.25)]"
-          >
+          <ButtonLink href={whatsappUrl()} variant="outline" size="sm">
             Fale Agora
-          </a>
+          </ButtonLink>
         </div>
 
         <button
@@ -111,18 +103,19 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMenuOpen(false)}
-                className="text-base text-[#d8d4cb] hover:text-gold-light"
+                className="text-base text-text-nav hover:text-gold-light"
               >
                 {link.label}
               </a>
             ))}
-            <a
-              href="https://wa.me/5513996764688"
+            <ButtonLink
+              href={whatsappUrl()}
               onClick={() => setIsMenuOpen(false)}
-              className="text-[15px] tracking-[0.5px] px-[22px] py-[11px] border border-gold text-gold rounded-[2px] whitespace-nowrap"
+              variant="outline"
+              size="sm"
             >
               Fale Agora
-            </a>
+            </ButtonLink>
           </div>
         </div>
       </div>

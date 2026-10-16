@@ -1,25 +1,21 @@
-import Reveal from "./Reveal";
-import StatCounter from "./StatCounter";
-
-const stats = [
-  { value: "4+", label: "Áreas de Atuação" },
-  { value: "100%", label: "Atendimento Personalizado" },
-  { value: "SP", label: "Sede em Santos" },
-];
+import Reveal from "@/components/ui/Reveal";
+import StatCounter from "@/components/ui/StatCounter";
+import Section from "@/components/ui/Section";
+import Eyebrow from "@/components/ui/Eyebrow";
+import SectionTitle from "@/components/ui/SectionTitle";
+import { aboutStats } from "@/data/stats";
+import { site } from "@/lib/site";
 
 export default function Sobre() {
   return (
-    <section
+    <Section
       id="sobre"
-      className="grid grid-cols-1 min-[861px]:grid-cols-[0.9fr_1.1fr] gap-[70px] items-start px-[6vw] py-[110px] bg-bg-secondary"
+      tone="secondary"
+      className="grid grid-cols-1 min-[861px]:grid-cols-[0.9fr_1.1fr] gap-[70px] items-start"
     >
       <Reveal>
-        <div className="text-[14px] tracking-[3px] text-gold uppercase mb-4">
-          Sobre o Advogado
-        </div>
-        <h2 className="font-heading text-[clamp(34px,4vw,46px)] text-text-heading mb-5 leading-[1.2]">
-          Matheus Moraes
-        </h2>
+        <Eyebrow>Sobre o Advogado</Eyebrow>
+        <SectionTitle className="mb-5 leading-[1.2]">{site.name}</SectionTitle>
         <div className="w-[60px] h-[2px] bg-gold mb-6" />
       </Reveal>
       <Reveal delay={120}>
@@ -35,19 +31,17 @@ export default function Sobre() {
           cuidado humano em cada etapa do processo.
         </p>
         <div className="grid grid-cols-3 gap-6 border-t border-gold/20 pt-8">
-          {stats.map((stat) => (
+          {aboutStats.map((stat) => (
             <div key={stat.label}>
               <StatCounter
                 value={stat.value}
                 className="font-heading text-[34px] text-gold mb-1.5"
               />
-              <div className="text-[14.5px] text-text-secondary">
-                {stat.label}
-              </div>
+              <div className="text-[14.5px] text-text-secondary">{stat.label}</div>
             </div>
           ))}
         </div>
       </Reveal>
-    </section>
+    </Section>
   );
 }

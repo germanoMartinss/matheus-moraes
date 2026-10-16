@@ -1,28 +1,15 @@
 import Image from "next/image";
-
-const trustPoints = [
-  "Atendimento presencial e remoto",
-  "Consulta inicial sigilosa",
-  "Atuação em todo o território nacional",
-];
+import ButtonLink from "@/components/ui/Button";
+import { trustPoints } from "@/data/hero";
+import { whatsappUrl } from "@/lib/site";
 
 export default function Hero() {
   return (
     <section
       id="topo"
-      className="relative min-h-screen grid grid-cols-1 min-[861px]:grid-cols-[1.1fr_0.9fr] items-center gap-10 px-[6vw] pt-[120px] pb-[60px] overflow-hidden bg-bg-primary"
-      style={{
-        backgroundImage:
-          "radial-gradient(circle at 15% 20%, rgba(200,168,98,0.06), transparent 45%)",
-      }}
+      className="relative min-h-screen grid grid-cols-1 min-[861px]:grid-cols-[1.1fr_0.9fr] items-center gap-10 px-[6vw] pt-[120px] pb-[60px] overflow-hidden bg-bg-primary bg-glow-gold"
     >
-      <div
-        className="absolute inset-0 opacity-5 pointer-events-none"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(45deg, transparent, transparent 38px, #c8a862 38px, #c8a862 39px)",
-        }}
-      />
+      <div className="absolute inset-0 opacity-5 pointer-events-none bg-hatch" />
       <div className="relative z-10 max-w-[640px]">
         <div className="text-[15px] tracking-[3px] text-gold uppercase mb-[22px] animate-fade-in-up">
           Santos, SP · Atuação Nacional
@@ -45,18 +32,12 @@ export default function Hero() {
           className="flex gap-[18px] flex-wrap animate-fade-in-up"
           style={{ animationDelay: "0.3s" }}
         >
-          <a
-            href="https://wa.me/5513996764688"
-            className="text-lg tracking-[0.5px] px-9 py-[18px] bg-gold text-bg-secondary rounded-[2px] font-medium transition-all duration-300 hover:bg-gold-light hover:-translate-y-1 hover:shadow-[0_14px_30px_rgba(200,168,98,0.3)]"
-          >
+          <ButtonLink href={whatsappUrl()} variant="primary" size="xl">
             Falar no WhatsApp
-          </a>
-          <a
-            href="#areas"
-            className="text-lg tracking-[0.5px] px-9 py-[18px] border border-text-primary/30 text-text-primary rounded-[2px] transition-all duration-300 hover:border-gold hover:text-gold hover:-translate-y-1"
-          >
+          </ButtonLink>
+          <ButtonLink href="#areas" variant="secondary" size="xl">
             Áreas de Atuação
-          </a>
+          </ButtonLink>
         </div>
 
         <div
@@ -91,7 +72,7 @@ export default function Hero() {
           width={520}
           height={520}
           priority
-          className="relative w-[min(100%,520px)] h-auto object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.5)] transition-transform duration-700 hover:scale-[1.02]"
+          className="relative w-[min(100%,520px)] h-auto object-contain drop-shadow-photo transition-transform duration-700 hover:scale-[1.02]"
         />
       </div>
     </section>

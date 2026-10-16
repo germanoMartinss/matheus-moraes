@@ -17,7 +17,7 @@ export default function ScrollToTop() {
       type="button"
       aria-label="Voltar ao topo"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className={`fixed bottom-7 right-7 z-40 flex h-11 w-11 items-center justify-center rounded-full border border-gold/40 bg-bg-secondary/90 backdrop-blur-md text-gold shadow-[0_8px_24px_rgba(0,0,0,0.35)] transition-all duration-300 hover:bg-gold hover:text-bg-primary hover:-translate-y-1 ${
+      className={`fixed bottom-7 right-7 z-40 flex h-11 w-11 items-center justify-center rounded-full border border-gold/40 bg-bg-secondary/90 backdrop-blur-md text-gold shadow-float transition-all duration-300 hover:bg-gold hover:text-bg-primary hover:-translate-y-1 ${
         isVisible
           ? "opacity-100 translate-y-0 pointer-events-auto"
           : "opacity-0 translate-y-3 pointer-events-none"
