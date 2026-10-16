@@ -16,6 +16,8 @@ export default function Footer() {
           {site.legalName}
         </span>
       </div>
+      {/* Evaluated at build time and on every daily revalidation of the page
+          (see app/page.tsx), so the year rolls over within a day. */}
       <span className="text-sm text-text-muted">
         © {new Date().getFullYear()} Todos os direitos reservados.
       </span>
