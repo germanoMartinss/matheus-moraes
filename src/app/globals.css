@@ -14,7 +14,7 @@
   --color-text-nav: #d8d4cb;
   --color-text-question: #f0ede5;
   --color-text-answer: #a8a49a;
-  --color-text-muted: #6b6860;
+  --color-text-muted: #827f77;
 
   --color-avatar-sage: #8a9a8f;
   --color-avatar-sage-fg: #a9c2ae;
@@ -57,6 +57,12 @@
   }
 }
 
+/* Fonts come from next/font variables set on <html>, so they stay inline. */
+@theme inline {
+  --font-heading: var(--font-playfair);
+  --font-body: var(--font-jost);
+}
+
 /* Diagonal gold hatching used behind the Hero and Contact sections. */
 @utility bg-hatch {
   background-image: repeating-linear-gradient(
@@ -75,11 +81,6 @@
     color-mix(in srgb, var(--color-gold) 6%, transparent),
     transparent 45%
   );
-}
-
-@theme inline {
-  --font-heading: var(--font-playfair);
-  --font-body: var(--font-jost);
 }
 
 @layer base {
@@ -129,34 +130,63 @@
     background: var(--color-gold);
     border-radius: 6px;
   }
+
+  /* Reduced motion. !important inside a layer beats normal declarations in
+     every other layer, including the animate-* and transition utilities. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-delay: 0s !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      transition-delay: 0s !important;
+    }
+  }
 }
 
 @layer components {
-  /* Scroll-reveal */
+  /* Scroll-reveal (see Reveal.tsx). Content is visible by default; JS only
+     marks it as pending while it is still below the fold. */
   .reveal {
-    opacity: 0;
-    transform: translateY(28px);
     transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
       transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal.is-pending {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: none;
     will-change: opacity, transform;
   }
 
-  .reveal.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
+  /* FAQ accordion. Closed answers use visibility: hidden so they leave the
+     accessibility tree and the tab order once the collapse finishes. */
   .accordion-content {
     display: grid;
     grid-template-rows: 0fr;
     opacity: 0;
+    visibility: hidden;
     transition: grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-      opacity 0.3s ease;
+      margin-top 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease,
+      visibility 0s linear 0.4s;
   }
 
+  /* The negative margin pulls the answer into the question's bottom
+     padding, so the open gap between them is 16px. */
   .accordion-content.is-open {
     grid-template-rows: 1fr;
+    margin-top: -10px;
     opacity: 1;
+    visibility: visible;
+    transition: grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+      margin-top 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease,
+      visibility 0s;
   }
 
   .accordion-content > div {
@@ -164,26 +194,20 @@
     min-height: 0;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .reveal {
+  /* Without JavaScript the toggle can't work, so every answer stays open. */
+  @media (scripting: none) {
+    .accordion-content {
+      grid-template-rows: 1fr;
+      margin-top: -10px;
       opacity: 1;
-      transform: none;
-      transition: none;
+      visibility: visible;
     }
   }
-}
 
-/* Reduced motion. !important inside a layer beats normal declarations in
-   every other layer, including the animate-* utilities. */
-@layer base {
   @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-
-    .animate-fade-in-up,
-    .animate-fade-in {
-      animation: none !important;
+    .reveal.is-pending {
+      opacity: 1;
+      transform: none;
     }
   }
 }

@@ -7,11 +7,11 @@ const base = "tracking-[0.5px] rounded-[2px] whitespace-nowrap transition-all du
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-gold text-bg-secondary font-medium hover:bg-gold-light hover:-translate-y-1 hover:shadow-gold-lift",
+    "bg-gold text-bg-secondary font-medium hover:bg-gold-light motion-safe:hover:-translate-y-1 hover:shadow-gold-lift",
   secondary:
-    "border border-text-primary/30 text-text-primary hover:border-gold hover:text-gold hover:-translate-y-1",
+    "border border-text-primary/30 text-text-primary hover:border-gold hover:text-gold motion-safe:hover:-translate-y-1",
   outline:
-    "border border-gold text-gold hover:bg-gold hover:text-bg-primary hover:-translate-y-0.5 hover:shadow-gold-lift-sm",
+    "border border-gold text-gold hover:bg-gold hover:text-bg-primary motion-safe:hover:-translate-y-0.5 hover:shadow-gold-lift-sm",
   outlineSubtle:
     "border border-gold/40 text-gold hover:border-gold hover:bg-gold hover:text-bg-primary",
 };

@@ -18,7 +18,7 @@ const avatarPalette = [
 
 function Stars({ rating }: { rating: number }) {
   return (
-    <div className="flex gap-[2px]" aria-label={`${rating} de 5 estrelas`}>
+    <div className="flex gap-[2px]" role="img" aria-label={`${rating} de 5 estrelas`}>
       {Array.from({ length: 5 }).map((_, i) => (
         <svg
           key={i}
@@ -28,6 +28,7 @@ function Stars({ rating }: { rating: number }) {
           fill={i < rating ? "currentColor" : "none"}
           stroke="currentColor"
           strokeWidth="1.5"
+          aria-hidden="true"
           className="text-gold"
         >
           <path d="M12 2.5l2.9 6.3 6.8.7-5.1 4.7 1.5 6.8L12 17.6l-6.1 3.4 1.5-6.8-5.1-4.7 6.8-.7z" />
@@ -48,10 +49,10 @@ export default async function GoogleReviews() {
   if (reviews.length === 0) return null;
 
   return (
-    <Section id="avaliacoes" tone="secondary">
+    <Section id="avaliacoes" tone="secondary" aria-labelledby="avaliacoes-titulo">
       <Reveal className="text-center max-w-[720px] mx-auto mb-14">
         <Eyebrow>Avaliações</Eyebrow>
-        <SectionTitle className="mb-6">O que dizem os clientes</SectionTitle>
+        <SectionTitle id="avaliacoes-titulo" className="mb-6">O que dizem os clientes</SectionTitle>
         {rating && reviewCount && (
           <div className="inline-flex items-center gap-3 border border-gold/20 rounded-[2px] px-6 py-3 bg-bg-primary/40">
             <span className="font-heading text-[26px] text-gold">
@@ -74,6 +75,7 @@ export default async function GoogleReviews() {
                 height="26"
                 viewBox="0 0 24 24"
                 fill="currentColor"
+                aria-hidden="true"
                 className="text-gold/30 mb-4"
               >
                 <path d="M7.5 6C4.5 6 2 8.5 2 11.5c0 2.8 2.1 5.1 4.8 5.4-.4 1.4-1.4 2.6-2.8 3.3v1.3c3.4-.5 6-3.5 6-7.2V6H7.5zm9.7 0c-3 0-5.5 2.5-5.5 5.5 0 2.8 2.1 5.1 4.8 5.4-.4 1.4-1.4 2.6-2.8 3.3v1.3c3.4-.5 6-3.5 6-7.2V6h-2.5z" />
@@ -117,6 +119,7 @@ export default async function GoogleReviews() {
           withIcon
         >
           Ver todas as avaliações no Google
+          <span className="sr-only"> (abre em nova aba)</span>
           <svg
             width="14"
             height="14"
@@ -126,6 +129,7 @@ export default async function GoogleReviews() {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
+            aria-hidden="true"
           >
             <path d="M7 17L17 7M7 7h10v10" />
           </svg>

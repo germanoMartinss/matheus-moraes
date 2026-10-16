@@ -31,6 +31,7 @@ export default function AreaIcon({ name, className }: { name: AreaIconName; clas
       strokeWidth="1.6"
       strokeLinecap="round"
       strokeLinejoin="round"
+      aria-hidden="true"
       className={className}
     >
       {paths[name]}

@@ -14,13 +14,21 @@ export const revalidate = 86400;
 export default function Home() {
   return (
     <div className="min-h-screen overflow-x-hidden">
+      <a
+        href="#conteudo"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:px-5 focus:py-3 focus:bg-gold focus:text-bg-primary focus:rounded-[2px] focus:font-medium"
+      >
+        Pular para o conteúdo
+      </a>
       <Navbar />
-      <Hero />
-      <Sobre />
-      <AreasAtuacao />
-      <GoogleReviews />
-      <Faq />
-      <Contato />
+      <main id="conteudo" tabIndex={-1} className="outline-none">
+        <Hero />
+        <Sobre />
+        <AreasAtuacao />
+        <GoogleReviews />
+        <Faq />
+        <Contato />
+      </main>
       <Footer />
       <ScrollToTop />
     </div>

@@ -10,12 +10,13 @@ export default function Sobre() {
   return (
     <Section
       id="sobre"
+      aria-labelledby="sobre-titulo"
       tone="secondary"
       className="grid grid-cols-1 min-[861px]:grid-cols-[0.9fr_1.1fr] gap-[70px] items-start"
     >
       <Reveal>
         <Eyebrow>Sobre o Advogado</Eyebrow>
-        <SectionTitle className="mb-5 leading-[1.2]">{site.name}</SectionTitle>
+        <SectionTitle id="sobre-titulo" className="mb-5 leading-[1.2]">{site.name}</SectionTitle>
         <div className="w-[60px] h-[2px] bg-gold mb-6" />
       </Reveal>
       <Reveal delay={120}>

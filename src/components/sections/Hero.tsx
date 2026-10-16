@@ -7,14 +7,16 @@ export default function Hero() {
   return (
     <section
       id="topo"
+      aria-labelledby="topo-titulo"
       className="relative min-h-screen grid grid-cols-1 min-[861px]:grid-cols-[1.1fr_0.9fr] items-center gap-10 px-[6vw] pt-[120px] pb-[60px] overflow-hidden bg-bg-primary bg-glow-gold"
     >
-      <div className="absolute inset-0 opacity-5 pointer-events-none bg-hatch" />
+      <div aria-hidden="true" className="absolute inset-0 opacity-5 pointer-events-none bg-hatch" />
       <div className="relative z-10 max-w-[640px]">
         <div className="text-[15px] tracking-[3px] text-gold uppercase mb-[22px] animate-fade-in-up">
           Santos, SP · Atuação Nacional
         </div>
         <h1
+          id="topo-titulo"
           className="font-heading text-[clamp(48px,6.2vw,76px)] leading-[1.12] mb-7 text-text-heading font-semibold animate-fade-in-up"
           style={{ animationDelay: "0.1s" }}
         >
@@ -55,6 +57,7 @@ export default function Hero() {
                 strokeWidth="2.2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                aria-hidden="true"
                 className="text-gold shrink-0"
               >
                 <path d="M20 6L9 17l-5-5" />
@@ -72,7 +75,7 @@ export default function Hero() {
           width={520}
           height={520}
           priority
-          className="relative w-[min(100%,520px)] h-auto object-contain drop-shadow-photo transition-transform duration-700 hover:scale-[1.02]"
+          className="relative w-[min(100%,520px)] h-auto object-contain drop-shadow-photo transition-transform duration-700 motion-safe:hover:scale-[1.02]"
         />
       </div>
     </section>

@@ -1,14 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ButtonLink from "@/components/ui/Button";
 import { navLinks } from "@/data/navigation";
 import { site, whatsappUrl } from "@/lib/site";
 
+const MOBILE_MENU_ID = "menu-mobile";
+
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 12);
@@ -17,8 +20,21 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      setIsMenuOpen(false);
+      menuButtonRef.current?.focus();
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [isMenuOpen]);
+
+  const closeMenu = () => setIsMenuOpen(false);
+
   return (
-    <nav
+    <header
       className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
         isScrolled
           ? "bg-bg-primary/95 backdrop-blur-md border-gold/20 shadow-nav"
@@ -30,10 +46,10 @@ export default function Navbar() {
           isScrolled ? "py-3" : "py-[18px]"
         }`}
       >
-        <div className="flex items-center gap-3">
+        <a href="#topo" className="flex items-center gap-3">
           <Image
             src="/assets/mm-logo-white.png"
-            alt="MM"
+            alt=""
             width={40}
             height={39}
             className="object-contain transition-transform duration-300"
@@ -46,9 +62,9 @@ export default function Navbar() {
               {site.brand}
             </div>
           </div>
-        </div>
+        </a>
 
-        <div className="hidden min-[861px]:flex items-center gap-9">
+        <nav aria-label="Principal" className="hidden min-[861px]:flex items-center gap-9">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -62,14 +78,17 @@ export default function Navbar() {
           <ButtonLink href={whatsappUrl()} variant="outline" size="sm">
             Fale Agora
           </ButtonLink>
-        </div>
+        </nav>
 
+        {/* 44px touch target; the negative margin keeps the original 32px layout box. */}
         <button
+          ref={menuButtonRef}
           type="button"
           aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"}
           aria-expanded={isMenuOpen}
+          aria-controls={MOBILE_MENU_ID}
           onClick={() => setIsMenuOpen((open) => !open)}
-          className="min-[861px]:hidden flex flex-col justify-center items-center gap-[5px] w-8 h-8"
+          className="min-[861px]:hidden flex flex-col justify-center items-center gap-[5px] w-11 h-11 -m-1.5"
         >
           <span
             className={`block h-[1.5px] w-6 bg-text-primary transition-transform duration-300 ${
@@ -90,6 +109,8 @@ export default function Navbar() {
       </div>
 
       <div
+        id={MOBILE_MENU_ID}
+        inert={!isMenuOpen}
         className={`min-[861px]:hidden grid transition-all duration-300 ease-out border-t bg-bg-primary ${
           isMenuOpen
             ? "grid-rows-[1fr] opacity-100 border-gold/15"
@@ -97,28 +118,26 @@ export default function Navbar() {
         }`}
       >
         <div className="overflow-hidden">
-          <div className="flex flex-col items-start gap-6 px-[6vw] pb-8 pt-6">
+          <nav
+            aria-label="Menu móvel"
+            className="flex flex-col items-start gap-6 px-[6vw] pb-8 pt-6"
+          >
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                onClick={() => setIsMenuOpen(false)}
+                onClick={closeMenu}
                 className="text-base text-text-nav hover:text-gold-light"
               >
                 {link.label}
               </a>
             ))}
-            <ButtonLink
-              href={whatsappUrl()}
-              onClick={() => setIsMenuOpen(false)}
-              variant="outline"
-              size="sm"
-            >
+            <ButtonLink href={whatsappUrl()} onClick={closeMenu} variant="outline" size="sm">
               Fale Agora
             </ButtonLink>
-          </div>
+          </nav>
         </div>
       </div>
-    </nav>
+    </header>
   );
 }

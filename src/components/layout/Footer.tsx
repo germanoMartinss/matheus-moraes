@@ -7,10 +7,10 @@ export default function Footer() {
       <div className="flex items-center gap-3">
         <Image
           src="/assets/mm-logo-white.png"
-          alt="MM"
+          alt=""
           width={32}
           height={31}
-          className="object-contain transition-transform duration-500 hover:rotate-[8deg]"
+          className="object-contain transition-transform duration-500 motion-safe:hover:rotate-[8deg]"
         />
         <span className="font-heading text-base text-text-secondary-light">
           {site.legalName}

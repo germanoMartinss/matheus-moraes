@@ -7,10 +7,10 @@ import { practiceAreas } from "@/data/areas";
 
 export default function AreasAtuacao() {
   return (
-    <Section id="areas">
+    <Section id="areas" aria-labelledby="areas-titulo">
       <Reveal className="text-center max-w-[640px] mx-auto mb-16">
         <Eyebrow>Áreas de Atuação</Eyebrow>
-        <SectionTitle className="mb-[18px]">Como podemos ajudar</SectionTitle>
+        <SectionTitle id="areas-titulo" className="mb-[18px]">Como podemos ajudar</SectionTitle>
         <p className="text-lg text-text-secondary leading-[1.7]">
           Assessoria jurídica completa, com foco na defesa dos melhores
           interesses de cada cliente.
@@ -23,9 +23,9 @@ export default function AreasAtuacao() {
               <div className="flex items-center justify-between mb-5">
                 <AreaIcon
                   name={area.icon}
-                  className="text-gold transition-transform duration-300 group-hover:-translate-y-1"
+                  className="text-gold transition-transform duration-300 motion-safe:group-hover:-translate-y-1"
                 />
-                <span className="font-heading text-[30px] text-gold/40">
+                <span aria-hidden="true" className="font-heading text-[30px] text-gold/75">
                   {area.number}
                 </span>
               </div>

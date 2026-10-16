@@ -7,11 +7,11 @@ import { faqItems } from "@/data/faq";
 
 export default function Faq() {
   return (
-    <Section id="faq" tone="secondary">
+    <Section id="faq" tone="secondary" aria-labelledby="faq-titulo">
       <div className="max-w-[820px] mx-auto">
         <Reveal className="text-center mb-14">
           <Eyebrow>Perguntas Frequentes</Eyebrow>
-          <SectionTitle>Dúvidas comuns</SectionTitle>
+          <SectionTitle id="faq-titulo">Dúvidas comuns</SectionTitle>
         </Reveal>
         <FaqAccordion items={faqItems} />
       </div>

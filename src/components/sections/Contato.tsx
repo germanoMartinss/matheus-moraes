@@ -41,11 +41,11 @@ const contactInfo = [
 
 export default function Contato() {
   return (
-    <Section id="contato" className="relative overflow-hidden">
-      <div className="absolute inset-0 opacity-[0.04] pointer-events-none bg-hatch" />
+    <Section id="contato" aria-labelledby="contato-titulo" className="relative overflow-hidden">
+      <div aria-hidden="true" className="absolute inset-0 opacity-[0.04] pointer-events-none bg-hatch" />
       <Reveal className="relative z-10 max-w-[860px] mx-auto text-center">
         <Eyebrow>Contato</Eyebrow>
-        <SectionTitle className="mb-5">Gostaria de uma orientação?</SectionTitle>
+        <SectionTitle id="contato-titulo" className="mb-5">Gostaria de uma orientação?</SectionTitle>
         <p className="text-[18.5px] text-text-secondary-light leading-[1.7] mb-12">
           Estamos aqui para lhe ajudar. Entre em contato e agende sua
           conversa.
