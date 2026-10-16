@@ -17,9 +17,17 @@ export const site = {
 
   oab: {
     // Número de inscrição, ex.: "123.456". Vazio até o cliente informar.
+    // Obrigatório na publicidade (art. 44 do Código de Ética da OAB).
     number: "",
     state: "SP",
   },
+
+  // Ano de início na advocacia, ex.: "2018". Vazio até o cliente informar.
+  practiceSince: "",
+
+  // Formação, ex.: "Graduado em Direito pela Universidade X". Vazio até o
+  // cliente informar.
+  education: "",
 
   phone: {
     display: "(13) 99676-4688",
@@ -64,6 +72,11 @@ export const site = {
 export function whatsappUrl(message: string = site.whatsapp.defaultMessage) {
   const text = message ? `?text=${encodeURIComponent(message)}` : "";
   return `https://wa.me/${site.whatsapp.number}${text}`;
+}
+
+/** "OAB/SP nº 123.456", or "" while the number is not filled in. */
+export function oabLabel() {
+  return site.oab.number ? `OAB/${site.oab.state} nº ${site.oab.number}` : "";
 }
 
 export const phoneUrl = `tel:${site.phone.e164}`;

@@ -1,9 +1,10 @@
 import Image from "next/image";
 import ButtonLink from "@/components/ui/Button";
 import { trustPoints } from "@/data/hero";
-import { whatsappUrl } from "@/lib/site";
+import { oabLabel, site, whatsappUrl } from "@/lib/site";
 
 export default function Hero() {
+  const oab = oabLabel();
   return (
     <section
       id="topo"
@@ -14,6 +15,12 @@ export default function Hero() {
       <div className="relative z-10 max-w-[640px]">
         <div className="text-[15px] tracking-[3px] text-gold uppercase mb-[22px] animate-fade-in-up">
           Santos, SP · Atuação Nacional
+        </div>
+        <div className="mb-6 animate-fade-in-up" style={{ animationDelay: "0.05s" }}>
+          <p className="font-heading text-[26px] text-text-heading">{site.name}</p>
+          {oab && (
+            <p className="text-[14px] tracking-[2px] text-gold uppercase mt-1">{oab}</p>
+          )}
         </div>
         <h1
           id="topo-titulo"
@@ -26,9 +33,9 @@ export default function Hero() {
           className="text-2xl leading-[1.7] text-text-secondary-light mb-10 max-w-[580px] animate-fade-in-up"
           style={{ animationDelay: "0.2s" }}
         >
-          Com anos de experiência, o escritório Matheus Moraes oferece
-          assessoria jurídica personalizada em Direito de Família, Direito
-          Médico, Direito Criminal e Concursos Públicos.
+          Assessoria jurídica em Direito de Família, Direito Médico, Direito
+          Criminal e Concursos Públicos, com atendimento presencial em Santos e
+          online em todo o país.
         </p>
         <div
           className="flex gap-[18px] flex-wrap animate-fade-in-up"

@@ -16,13 +16,6 @@
   --color-text-answer: #a8a49a;
   --color-text-muted: #827f77;
 
-  --color-avatar-sage: #8a9a8f;
-  --color-avatar-sage-fg: #a9c2ae;
-  --color-avatar-copper: #a8896b;
-  --color-avatar-copper-fg: #d3ab84;
-  --color-avatar-steel: #7f93ad;
-  --color-avatar-steel-fg: #a7bdd9;
-
   --shadow-card-hover: inset 0 0 0 1px
     color-mix(in srgb, var(--color-gold) 35%, transparent);
   --shadow-gold-lift: 0 14px 30px

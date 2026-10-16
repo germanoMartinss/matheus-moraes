@@ -47,8 +47,8 @@ export default function Contato() {
         <Eyebrow>Contato</Eyebrow>
         <SectionTitle id="contato-titulo" className="mb-5">Gostaria de uma orientação?</SectionTitle>
         <p className="text-[18.5px] text-text-secondary-light leading-[1.7] mb-12">
-          Estamos aqui para lhe ajudar. Entre em contato e agende sua
-          conversa.
+          Atendimento presencial em Santos e online. Escolha o canal de sua
+          preferência para agendar uma conversa.
         </p>
         <div className="grid grid-cols-1 min-[861px]:grid-cols-[1fr_0.8fr_1.2fr] gap-px bg-gold/15 border border-gold/15 mb-12 text-left">
           {contactInfo.map((item) => (

@@ -22,17 +22,9 @@ export type Stat = {
   label: string;
 };
 
-export type Review = {
-  name: string;
-  rating: number;
-  relativeDate: string;
-  text: string;
-};
-
-export type ReviewsFallback = {
-  /** Date the values below were last checked by hand (YYYY-MM-DD). */
+export type RatingFallback = {
+  /** Date the values were last checked on the Google profile (YYYY-MM-DD). */
   updatedAt: string;
   rating: number;
   reviewCount: number;
-  reviews: Review[];
 };

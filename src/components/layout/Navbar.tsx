@@ -76,7 +76,7 @@ export default function Navbar() {
             </a>
           ))}
           <ButtonLink href={whatsappUrl()} variant="outline" size="sm">
-            Fale Agora
+            Agendar conversa
           </ButtonLink>
         </nav>
 
@@ -133,7 +133,7 @@ export default function Navbar() {
               </a>
             ))}
             <ButtonLink href={whatsappUrl()} onClick={closeMenu} variant="outline" size="sm">
-              Fale Agora
+              Agendar conversa
             </ButtonLink>
           </nav>
         </div>

@@ -1,7 +1,8 @@
 import Image from "next/image";
-import { site } from "@/lib/site";
+import { oabLabel, site } from "@/lib/site";
 
 export default function Footer() {
+  const oab = oabLabel();
   return (
     <footer className="flex items-center justify-between flex-wrap gap-4 px-[6vw] py-10 bg-bg-tertiary border-t border-gold/15">
       <div className="flex items-center gap-3">
@@ -14,6 +15,7 @@ export default function Footer() {
         />
         <span className="font-heading text-base text-text-secondary-light">
           {site.legalName}
+          {oab && <span className="font-body text-sm text-text-secondary"> · {oab}</span>}
         </span>
       </div>
       {/* Evaluated at build time and on every daily revalidation of the page

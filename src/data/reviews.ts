@@ -1,49 +1,15 @@
-import type { ReviewsFallback } from "@/types";
+import type { RatingFallback } from "@/types";
 
 /**
- * Fallback for when the Places API is unavailable (no key, no Place ID or an
- * API error). Last values collected from the Google profile on updatedAt.
+ * Used when the Places API is unavailable (no key, no Place ID or an API
+ * error). Last values seen on the Google profile on `updatedAt`; update them
+ * by hand if the API stays off for long.
+ *
+ * Individual testimonials are intentionally not shown on the site — see the
+ * OAB section of the README.
  */
-export const reviewsFallback: ReviewsFallback = {
+export const ratingFallback: RatingFallback = {
   updatedAt: "2026-08-14",
   rating: 5.0,
   reviewCount: 62,
-  reviews: [
-    {
-      name: "vsfranca",
-      rating: 5,
-      relativeDate: "10 meses atrás",
-      text: "Advogado digno da profissão, se a sua missão é defender a justiça ele faz com excelência e determinação. Sempre acessível, pronto e a disposição para atender e resolver o seu problema. Contratei seus serviços por conta de dois processos na esfera civil e ambos obtivemos sucesso. Não perca tempo e chame-o já.",
-    },
-    {
-      name: "Monique Costa",
-      rating: 5,
-      relativeDate: "10 meses atrás",
-      text: "O Matheus é um profissional bastante atencioso, explica de maneira técnica e sua assessoria me deixou mais segura quanto a ação que eu devia promover. Muito obrigada, Matheus! E super indico a quem precisar ;)",
-    },
-    {
-      name: "Vanessa Bortolomasi",
-      rating: 5,
-      relativeDate: "10 meses atrás",
-      text: "Desenvolve trabalho com excelente técnica, agilidade e conhecimento jurídico atualizado. Além de ser um profissional atencioso e empático. Recomendo!",
-    },
-    {
-      name: "Fernanda Colonetti",
-      rating: 5,
-      relativeDate: "10 meses atrás",
-      text: "Excelente atendimento meu caso foi atendido no prazo muito rápido super recomendo , pois moro no Paraná e é de extrema confiança.",
-    },
-    {
-      name: "Claudyane Pires",
-      rating: 5,
-      relativeDate: "10 meses atrás",
-      text: "Compromissado com a justiça, ético, está sempre pronto pra defender os direitos de seus clientes! Um excelente profissional!",
-    },
-    {
-      name: "Ari Lopes",
-      rating: 5,
-      relativeDate: "10 meses atrás",
-      text: "“Só tenho a agradecer. Atencioso, esperto e resolveu tudo com calma. Recomendo demais!”",
-    },
-  ],
 };

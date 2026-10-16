@@ -12,8 +12,8 @@ export default function AreasAtuacao() {
         <Eyebrow>Áreas de Atuação</Eyebrow>
         <SectionTitle id="areas-titulo" className="mb-[18px]">Como podemos ajudar</SectionTitle>
         <p className="text-lg text-text-secondary leading-[1.7]">
-          Assessoria jurídica completa, com foco na defesa dos melhores
-          interesses de cada cliente.
+          Conheça as áreas em que o escritório atua e os tipos de questão
+          que costumam chegar até nós.
         </p>
       </Reveal>
       <div className="grid grid-cols-2 min-[861px]:grid-cols-4 gap-px bg-gold/15 border border-gold/15">

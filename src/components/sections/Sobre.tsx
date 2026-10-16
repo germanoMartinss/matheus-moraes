@@ -4,9 +4,15 @@ import Section from "@/components/ui/Section";
 import Eyebrow from "@/components/ui/Eyebrow";
 import SectionTitle from "@/components/ui/SectionTitle";
 import { aboutStats } from "@/data/stats";
-import { site } from "@/lib/site";
+import { oabLabel, site } from "@/lib/site";
 
 export default function Sobre() {
+  const oab = oabLabel();
+  const credentials = [
+    oab,
+    site.practiceSince && `Advogado desde ${site.practiceSince}`,
+    site.education,
+  ].filter(Boolean);
   return (
     <Section
       id="sobre"
@@ -18,13 +24,20 @@ export default function Sobre() {
         <Eyebrow>Sobre o Advogado</Eyebrow>
         <SectionTitle id="sobre-titulo" className="mb-5 leading-[1.2]">{site.name}</SectionTitle>
         <div className="w-[60px] h-[2px] bg-gold mb-6" />
+        {credentials.length > 0 && (
+          <ul className="space-y-1.5 text-[15px] text-text-secondary">
+            {credentials.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        )}
       </Reveal>
       <Reveal delay={120}>
         <p className="text-[18.5px] leading-[1.85] text-text-secondary-light mb-[22px]">
           Advogado dedicado à prática de uma advocacia próxima, ética e
           personalizada. Atua em Santos e em todo o território nacional,
-          acompanhando cada cliente com atenção individual e compromisso com
-          resultados sólidos.
+          acompanhando cada cliente com atenção individual em todas as etapas
+          do caso.
         </p>
         <p className="text-[18.5px] leading-[1.85] text-text-secondary-light mb-10">
           O escritório foi construído sobre um princípio simples: cada caso é
