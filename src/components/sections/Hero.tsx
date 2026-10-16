@@ -69,12 +69,14 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 flex justify-center items-center h-full animate-fade-in">
+        {/* Not the LCP element (it fades in) and below the fold on phones, so it
+            keeps the default lazy loading — see README. */}
         <Image
           src="/assets/matheus-oval.png"
           alt="Matheus Moraes"
-          width={520}
-          height={520}
-          priority
+          width={452}
+          height={644}
+          sizes="(min-width: 861px) min(calc(39.6vw - 18px), 520px), min(88vw, 520px)"
           className="relative w-[min(100%,520px)] h-auto object-contain drop-shadow-photo transition-transform duration-700 motion-safe:hover:scale-[1.02]"
         />
       </div>
