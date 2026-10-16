@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-:root {
+@theme {
   --color-bg-primary: #0f1117;
   --color-bg-secondary: #141620;
   --color-bg-tertiary: #0b0d12;
@@ -11,22 +11,33 @@
   --color-text-secondary: #9d9a91;
   --color-text-secondary-light: #c3bfb5;
 
-  --font-heading: var(--font-playfair);
-  --font-body: var(--font-jost);
+  --animate-fade-in-up: fade-in-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-fade-in: fade-in 1s ease both;
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 }
 
 @theme inline {
-  --color-bg-primary: var(--color-bg-primary);
-  --color-bg-secondary: var(--color-bg-secondary);
-  --color-bg-tertiary: var(--color-bg-tertiary);
-  --color-gold: var(--color-gold);
-  --color-gold-light: var(--color-gold-light);
-  --color-text-primary: var(--color-text-primary);
-  --color-text-heading: var(--color-text-heading);
-  --color-text-secondary: var(--color-text-secondary);
-  --color-text-secondary-light: var(--color-text-secondary-light);
-  --font-heading: var(--font-heading);
-  --font-body: var(--font-body);
+  --font-heading: var(--font-playfair);
+  --font-body: var(--font-jost);
 }
 
 @layer base {
@@ -42,7 +53,7 @@
     margin: 0;
     background: var(--color-bg-primary);
     color: var(--color-text-primary);
-    font-family: var(--font-body), sans-serif;
+    font-family: var(--font-jost), sans-serif;
   }
 
   ::selection {
@@ -78,79 +89,59 @@
   }
 }
 
-/* Scroll-reveal */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@keyframes fade-in-up {
-  from {
+@layer components {
+  /* Scroll-reveal */
+  .reveal {
     opacity: 0;
-    transform: translateY(22px);
+    transform: translateY(28px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
   }
-  to {
+
+  .reveal.is-visible {
     opacity: 1;
     transform: translateY(0);
   }
-}
 
-@keyframes fade-in {
-  from {
+  .accordion-content {
+    display: grid;
+    grid-template-rows: 0fr;
     opacity: 0;
+    transition: grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 0.3s ease;
   }
-  to {
+
+  .accordion-content.is-open {
+    grid-template-rows: 1fr;
     opacity: 1;
   }
-}
 
-.animate-fade-in-up {
-  animation: fade-in-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.animate-fade-in {
-  animation: fade-in 1s ease both;
-}
-
-.accordion-content {
-  display: grid;
-  grid-template-rows: 0fr;
-  opacity: 0;
-  transition: grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.3s ease;
-}
-
-.accordion-content.is-open {
-  grid-template-rows: 1fr;
-  opacity: 1;
-}
-
-.accordion-content > div {
-  overflow: hidden;
-  min-height: 0;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
+  .accordion-content > div {
+    overflow: hidden;
+    min-height: 0;
   }
 
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
   }
+}
 
-  .animate-fade-in-up,
-  .animate-fade-in {
-    animation: none !important;
+/* Reduced motion. !important inside a layer beats normal declarations in
+   every other layer, including the animate-* utilities. */
+@layer base {
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    .animate-fade-in-up,
+    .animate-fade-in {
+      animation: none !important;
+    }
   }
 }
